@@ -22,10 +22,15 @@ public class Gravity {
                 float d = (float) Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)); 
 
                 float F = (float) ((G * m1 * m2) / (Math.pow(d, 2.0)));
-                
-                F = Math.min(F, 1000f);
 
-                System.out.println(F);
+                //System.out.println(F);
+
+                if(d < actualBody.radius + nextBody.radius){
+                    System.out.println("colisao");
+
+                    mergeBodies(actualBody, nextBody, bodies, i, j);
+
+                }
 
                 float fx = F * (dx/d);
                 float fy = F * (dy/d);
@@ -37,6 +42,24 @@ public class Gravity {
                 nextBody.acceleration.y -= fy / nextBody.mass;
 
             }
+        }
+
+    }
+
+    public void mergeBodies(Body body1, Body body2, Array<Body> bodies, int i, int j){
+
+        if(body1.mass > body2.mass){
+            body1.mass += body2.mass;
+            body1.radius += body2.radius/2;
+            
+            bodies.removeIndex(j);
+            
+        }else{
+            body2.mass += body1.mass;
+            body2.radius += body2.radius/2;
+
+            bodies.removeIndex(i);
+
         }
 
     }

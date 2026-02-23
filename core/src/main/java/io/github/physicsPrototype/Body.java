@@ -1,6 +1,5 @@
 package io.github.physicsPrototype;
 
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector3;
 
 public class Body {
@@ -31,7 +30,7 @@ public class Body {
         position.x += speed.x * dt;
         position.y += speed.y * dt;
 
-        System.out.println(name + " pos: " + position.x + ", " + position.y);
+        //System.out.println(name + " pos: " + position.x + ", " + position.y);
 
         acceleration.set(0, 0, 0);
         

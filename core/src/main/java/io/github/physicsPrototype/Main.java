@@ -41,6 +41,24 @@ public class Main extends ApplicationAdapter {
 
         universe.bodies.add(body);
 
+        body = new Body(new Vector3(0, 0, 0),
+                        new Vector3(75f, 250f, 0),
+                        new Vector3(0, 0, 0),
+                        1000.0f,
+                        15.0f,
+                    "Jupiter");
+
+        universe.bodies.add(body);
+
+        body = new Body(new Vector3(0, 0, 0),
+                        new Vector3(120f, 150f, 0),
+                        new Vector3(0, 0, 0),
+                        200.0f,
+                        2.0f,
+                    "Urano");
+
+        universe.bodies.add(body);
+
     }
 
     @Override
