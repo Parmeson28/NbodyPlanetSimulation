@@ -50,13 +50,13 @@ public class Gravity {
 
         if(body1.mass > body2.mass){
             body1.mass += body2.mass;
-            body1.radius += body2.radius/2;
+            body1.radius += body2.radius/3;
             
             bodies.removeIndex(j);
             
         }else{
             body2.mass += body1.mass;
-            body2.radius += body2.radius/2;
+            body2.radius += body2.radius/3;
 
             bodies.removeIndex(i);
 

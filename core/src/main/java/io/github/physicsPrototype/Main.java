@@ -19,19 +19,31 @@ public class Main extends ApplicationAdapter {
                         new Vector3(0, 0, 0),
                         700.0f,
                         10.0f,
-                    "Terra");
+                    "Sun");
 
         universe.bodies.add(body);
 
-        body = new Body(new Vector3(0, 0, 0),
-                        new Vector3(10f, 50f, 0),
-                        new Vector3(0, 0, 0),
-                        670.0f,
-                        5.0f,
+        body = new Body(new Vector3(0, -10f, 0),
+                        new Vector3(100f + 75f, 100f, 0),
+                        new Vector3(0, 0f, 0),
+                        150.0f,
+                        3.0f,
                     "Venus");
 
         universe.bodies.add(body);
 
+
+        body = new Body(new Vector3(0, 10f, 0),
+                        new Vector3(100f + 50f, 125f, 0),
+                        new Vector3(0, 0f, 0),
+                        150.0f,
+                        3.0f,
+                    "Earth");
+
+        universe.bodies.add(body);
+
+
+        /* 
         body = new Body(new Vector3(0, 0, 0),
                         new Vector3(150f, 50f, 0),
                         new Vector3(0, 0, 0),
@@ -58,6 +70,8 @@ public class Main extends ApplicationAdapter {
                     "Urano");
 
         universe.bodies.add(body);
+
+        */
 
     }
 
