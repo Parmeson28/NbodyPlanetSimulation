@@ -12,9 +12,13 @@ There's a Body class which is used to create new bodies which contain speed, acc
 If two bodies collide, they will merge into each other. The one with more mass will "absorb" the other.
 
 Newton's Law of Gravitation -> F = G * (m1 * m2)/r²
+
 F -> Resulting force
+
 G -> Gravitational Constant
+
 m -> Mass of the bodies
+
 r -> Distance between the bodies
 
 Next step:
