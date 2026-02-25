@@ -15,18 +15,18 @@ public class Main extends ApplicationAdapter {
     public void create() {
 
         body = new Body(new Vector3(0, 0, 0),
-                        new Vector3(100f, 100f, 0),
+                        new Vector3(250f, 250f, 0),
                         new Vector3(0, 0, 0),
-                        700.0f,
+                        3300.0f,
                         10.0f,
                     "Sun");
 
         universe.bodies.add(body);
 
         body = new Body(new Vector3(0, -10f, 0),
-                        new Vector3(100f + 75f, 100f, 0),
+                        new Vector3(250f + 100f, 250f, 0),
                         new Vector3(0, 0f, 0),
-                        150.0f,
+                        8.0f,
                         3.0f,
                     "Venus");
 
@@ -34,11 +34,20 @@ public class Main extends ApplicationAdapter {
 
 
         body = new Body(new Vector3(0, 10f, 0),
-                        new Vector3(100f + 50f, 125f, 0),
+                        new Vector3(250f + 150f, 250f, 0),
                         new Vector3(0, 0f, 0),
-                        150.0f,
+                        10.0f,
                         3.0f,
                     "Earth");
+
+        universe.bodies.add(body);
+
+        body = new Body(new Vector3(0, -10f, 0),
+                    new Vector3(250f - 200f, 250f, 0),
+                    new Vector3(0, 0f, 0),
+                    14.0f,
+                    3.0f,
+                "Urano");
 
         universe.bodies.add(body);
 
@@ -78,13 +87,22 @@ public class Main extends ApplicationAdapter {
     @Override
     public void render() {
         
+        float dt = Gdx.graphics.getDeltaTime();
 
-        gravity.simulateAttraction(universe.G, universe.bodies);
         
         for(Body body : universe.bodies){
 
-            body.updatePos(Gdx.graphics.getDeltaTime());
+            body.halfTimeSpeedAndPos(dt);
         
+        }
+
+        gravity.simulateAttraction(universe.G, universe.bodies);
+        
+
+        for(Body body : universe.bodies){
+
+            body.halfTimeSpeed(dt);
+
         }
         
 

@@ -22,18 +22,23 @@ public class Body {
         this.name = name;
     }
 
-    public void updatePos(float dt){
+    public void halfTimeSpeedAndPos(float dt){
 
-        speed.x += acceleration.x * dt;
-        speed.y += acceleration.y * dt;
+        speed.x += acceleration.x * dt * 0.5;
+        speed.y += acceleration.y * dt * 0.5;
 
         position.x += speed.x * dt;
         position.y += speed.y * dt;
 
-        //System.out.println(name + " pos: " + position.x + ", " + position.y);
-
         acceleration.set(0, 0, 0);
-        
+
+    }
+
+    public void halfTimeSpeed(float dt){
+
+        speed.x += acceleration.x * dt * 0.5;
+        speed.y += acceleration.y * dt * 0.5;
+
     }
     
 }
