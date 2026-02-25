@@ -21,9 +21,17 @@ m -> Mass of the bodies
 
 r -> Distance between the bodies
 
-Next step:
-Leapfrog integration
+## Leapfrog integration
+Leapfrog integration algorithm is used for a more realistic approach for updating the position of the bodies. In the previous method, we passed an old velocity value to update the body position, which doesn't happen now because velocity is always half step ahead of position, and the program recalculates the velocity in between the execution of two methods.
+
+Half time update (add half of the acceleration to velocity then updates position) -> Calculate force based on Newton's Law of Gravitation -> Half time update (add half of the acceleration to velocity based on the updated position)
+
 Reference: https://jduarte.physics.ucsd.edu/phys141/_downloads/98b2b44e12426a0a101effebb1ad7144/leapfrog.pdf
+
+Next step:
+Barnes-Hut
+Reference: https://www1.univap.br/irapuan/Tese/treecode/treecode.htm
+
 
 A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
 
