@@ -1,66 +1,79 @@
-# NbodySimulation
+# NbodyPlanetSimulation
 
-## GOALS
-The main goal of this project is to further my studies in computer physics simulations.
+A 2D N-body gravity simulation written in Java with [libGDX](https://libgdx.com/). Bodies attract each other through Newtonian gravity, move using leapfrog integration, and merge when they collide.
 
-My choice for Java and the LibGDX library is determined by my familiarity with the language and the library in previous projects. Also, LibGDX provides a good performance with a less complex syntax if compared to a lower level alternative such as pure OpenGL.
+![Simulation preview](docs/simulation.gif)
 
-## First implementations
-At first, my goal was to make it functional so I implemented the Newton's Law of Gravitation (defined below).
-The force is calculated each frame by a O(N²) nested for loop, which takes the information of the bodies from an array that stores them.
-There's a Body class which is used to create new bodies which contain speed, acceleration, mass, radius, and position. 
-If two bodies collide, they will merge into each other. The one with more mass will "absorb" the other.
+## Quick Start
 
-Newton's Law of Gravitation -> F = G * (m1 * m2)/r²
+**Requirements:** JDK (add the version you use, e.g. 17+)
 
-F -> Resulting force
+```bash
+git clone https://github.com/Parmeson28/NbodyPlanetSimulation.git
+cd NbodyPlanetSimulation
+./gradlew lwjgl3:run        # Windows: gradlew.bat lwjgl3:run
+```
 
-G -> Gravitational Constant
+To build a runnable jar (output in `lwjgl3/build/libs`):
 
-m -> Mass of the bodies
+```bash
+./gradlew lwjgl3:jar
+```
 
-r -> Distance between the bodies
+## Goals
 
-## Leapfrog integration
-Leapfrog integration algorithm is used for a more realistic approach for updating the position of the bodies. In the previous method, we passed an old velocity value to update the body position, which doesn't happen now because velocity is always half step ahead of position, and the program recalculates the velocity in between the execution of two methods.
+The main goal of this project is to further my studies in computational physics simulations.
 
-Half time update (add half of the acceleration to velocity then updates position) -> Calculate force based on Newton's Law of Gravitation -> Half time update (add half of the acceleration to velocity based on the updated position)
+I chose Java and libGDX because I was already familiar with both from previous projects. libGDX offers good performance with simpler syntax than a lower-level alternative such as pure OpenGL.
 
-Reference: https://jduarte.physics.ucsd.edu/phys141/_downloads/98b2b44e12426a0a101effebb1ad7144/leapfrog.pdf
+## How It Works
 
-Next step:
-Barnes-Hut
-Reference: https://www1.univap.br/irapuan/Tese/treecode/treecode.htm
+### Newtonian gravity
 
+The force between every pair of bodies is calculated each frame with a nested loop over all bodies (O(N²)):
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+```
+F = G * (m1 * m2) / r²
+```
 
-This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
+| Symbol | Meaning |
+|--------|---------|
+| F | Resulting force |
+| G | Gravitational constant |
+| m1, m2 | Masses of the two bodies |
+| r | Distance between the bodies |
 
-## Platforms
+Each body is an instance of the `Body` class, which stores its position, velocity, acceleration, mass and radius. When two bodies collide, they merge: the one with more mass absorbs the other.
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
+### Leapfrog integration
 
-## Gradle
+Updating position with an old velocity value is not very accurate. With leapfrog integration, velocity is kept half a step ahead of position, which gives a more realistic result. Each frame does:
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+1. Half-step update: add half of the acceleration to the velocity, then update the position
+2. Recalculate the forces with Newton's law using the new positions
+3. Half-step update: add the other half of the acceleration to the velocity
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
+Reference: [Leapfrog integration notes (UCSD)](https://jduarte.physics.ucsd.edu/phys141/_downloads/98b2b44e12426a0a101effebb1ad7144/leapfrog.pdf)
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+## Project Structure
+
+- `core`: main module with the simulation logic, shared by all platforms
+- `lwjgl3`: desktop launcher using LWJGL3
+- `assets`: project assets
+
+## Roadmap
+
+- [x] Newtonian gravity with O(N²) force calculation
+- [x] Collisions with merging
+- [x] Leapfrog integration
+- [ ] Barnes-Hut algorithm to reduce the cost per frame ([reference](https://www1.univap.br/irapuan/Tese/treecode/treecode.htm))
+
+## Built With
+
+- Java
+- [libGDX](https://libgdx.com/) (project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff))
+- Gradle
+
+## License
+
+No license defined yet.
