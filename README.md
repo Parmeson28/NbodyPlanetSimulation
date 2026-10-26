@@ -2,7 +2,7 @@
 
 A 2D N-body gravity simulation written in Java with [libGDX](https://libgdx.com/). Bodies attract each other through Newtonian gravity, move using leapfrog integration, and merge when they collide.
 
-![Simulation preview](docs/simulation.gif)
+![Simulation preview](docs/test.gif)
 
 ## Quick Start
 
