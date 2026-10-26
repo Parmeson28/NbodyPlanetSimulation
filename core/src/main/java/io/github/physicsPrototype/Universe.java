@@ -21,10 +21,10 @@ public class Universe {
     }
 
     public void drawBodies(){
-
+        
+        ShapeRenderer shape = new ShapeRenderer();
         for(Body body : bodies){
 
-            ShapeRenderer shape = new ShapeRenderer();
 
             shape.begin(ShapeType.Filled);
             shape.circle(body.position.x, body.position.y, body.radius);
