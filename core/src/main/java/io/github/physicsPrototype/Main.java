@@ -42,46 +42,6 @@ public class Main extends ApplicationAdapter {
 
         universe.bodies.add(body);
 
-        body = new Body(new Vector3(0, -10f, 0),
-                    new Vector3(250f - 200f, 250f, 0),
-                    new Vector3(0, 0f, 0),
-                    14.0f,
-                    3.0f,
-                "Urano");
-
-        universe.bodies.add(body);
-
-
-        /* 
-        body = new Body(new Vector3(0, 0, 0),
-                        new Vector3(150f, 50f, 0),
-                        new Vector3(0, 0, 0),
-                        400.0f,
-                        3.0f,
-                    "Marte");
-
-        universe.bodies.add(body);
-
-        body = new Body(new Vector3(0, 0, 0),
-                        new Vector3(75f, 250f, 0),
-                        new Vector3(0, 0, 0),
-                        1000.0f,
-                        15.0f,
-                    "Jupiter");
-
-        universe.bodies.add(body);
-
-        body = new Body(new Vector3(0, 0, 0),
-                        new Vector3(120f, 150f, 0),
-                        new Vector3(0, 0, 0),
-                        200.0f,
-                        2.0f,
-                    "Urano");
-
-        universe.bodies.add(body);
-
-        */
-
     }
 
     @Override
